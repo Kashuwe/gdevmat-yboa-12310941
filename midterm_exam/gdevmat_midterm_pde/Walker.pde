@@ -1,9 +1,11 @@
-public class Walker {
+public class Walker 
+{
   PVector position;
   float size;
   color col;
   
-  public Walker() {
+  public Walker() 
+  {
     // create position using a Gaussian distribution centered at 0.
     float x = (float)(randomGaussian() * (Window.widthPx / 3.0));
     float y = (float)(randomGaussian() * (Window.heightPx / 3.0));
@@ -18,7 +20,8 @@ public class Walker {
     col = color(random(255), random(255), random(255));
   }
   
-  public void update(BlackHole bh) {
+  public void update(BlackHole bh) 
+  {
     PVector direction = PVector.sub(bh.position, position);
     
     // Adding a slight variation using Perlin noise to add organic motion to the matter's movement
@@ -35,7 +38,8 @@ public class Walker {
     position.add(direction);
   }
   
-  public void render() {
+  public void render() 
+  {
     noStroke();
     fill(col);
     circle(position.x, position.y, size);

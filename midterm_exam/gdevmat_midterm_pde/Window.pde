@@ -1,6 +1,6 @@
 public static class Window
 {
-     public static int widthPx = 1080;
+     public static int widthPx = 1280;
       public static int heightPx = 720;
       public static int windowWidth = widthPx / 2;
       public static int windowHeight = heightPx / 2;
