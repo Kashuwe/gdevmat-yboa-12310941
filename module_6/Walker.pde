@@ -9,7 +9,7 @@ public class Walker
   public float mass = 1;
   public float r, g, b, a;
   
-  Walker()
+  public Walker()
   {
   }
   
