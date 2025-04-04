@@ -5,7 +5,8 @@ void setup()
   size(1280, 720, P3D);
   camera(0, 0, -(height/2.0) / tan(PI*30.0 / 180.0), 0, 0, 0, 0, -1, 0);
   int posY = 0;
-  for (int i = 0; i < walkers.length; i++) {
+  for (int i = 0; i < walkers.length; i++) 
+  {
     posY = 2 * (Window.windowHeight / 8) * (i - (8 / 2));
     walkers[i] = new Walker(); 
     walkers[i].position.set(-500, posY);
@@ -29,7 +30,8 @@ void draw()
   strokeWeight(2); 
   line(0, 360, 0, -360); 
 
-  for (int i = 0; i < walkers.length; i++) {
+  for (int i = 0; i < walkers.length; i++) 
+  {
     float mew = (walkers[i].position.x > 0) ? 0.4f : 0.01f; 
     //println("Walker " + i + " PosX: " + walkers[i].position.x + " | mu: " + mew); // debugging
     float normal = 1;
@@ -40,7 +42,10 @@ void draw()
     friction.mult(frictionMagnitude);
     walkers[i].applyForce(friction);
     
-    PVector acceleration = new PVector(0.2, 0); // for constant acceleration
+    //PVector acceleration = new PVector(0.2 / walkers[i].mass, 0); // for constant acceleration
+    
+    // I'm not sure if this is the correct implementation of the Bonus:
+    PVector acceleration = new PVector(0.2 / walkers[i].mass, 0); // applies the objects' masses for computation
     walkers[i].applyForce(acceleration);
     
     walkers[i].render();
@@ -60,4 +65,23 @@ void draw()
     }
     */
   }
+} 
+
+void mousePressed() // Reset everything when the mouse is clicked
+{
+  int posY = 0;
+     for (int i = 0; i < walkers.length; i++) 
+     {
+       posY = 2 * (Window.windowHeight / walkers.length) * (i - (walkers.length / 2));
+       walkers[i] = new Walker(); 
+       walkers[i].position.set(-500, posY);
+  
+       walkers[i].mass = int(random(1, 11));
+       walkers[i].scale = walkers[i].mass * 15;
+  
+       walkers[i].r = random(255);
+       walkers[i].g = random(255);
+       walkers[i].b = random(255);
+       walkers[i].a = random(150, 255);
+     }
 }
